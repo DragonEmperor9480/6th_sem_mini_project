@@ -1,0 +1,123 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+
+  
+  .mcq-container h1 {
+    font-size: 2.0rem; /* Increase font size */
+    font-weight: bold; /* Make it bold */
+    margin-bottom: 20px; /* Add some space below the title */
+    color: white;
+}  
+
+  .mcq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #35393f;
+    color: black;
+    font-weight: bold;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+  }
+  
+  .question-block {
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .option-button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .option-button.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+  }
+  
+  .option-button.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+  }
+  
+  .option-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .result {
+    margin-top: 10px;
+  }
+  
+  .correct-message {
+    color: #155724;
+  }
+  
+  .incorrect-message {
+    color: #721c24;
+  }
+  
+  .summary {
+    margin-top: 30px;
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: black;
+  }
+  
+  table, th, td {
+    border: 1px solid #eb5454;
+
+}
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #c3b5b5;
+  }
+
+.summary{
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+  

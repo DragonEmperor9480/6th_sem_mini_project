@@ -1,0 +1,24 @@
+.mycourses-container {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: center; /* Center align content */
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.section-heading {
+  font-size: 23px; /* Adjust font size as needed */
+  margin-bottom: 20px; /* Add margin for spacing */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
