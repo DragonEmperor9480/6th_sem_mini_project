@@ -32,7 +32,7 @@ let Router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home></Home>
+                element: <Login></Login>
             },
             {
                 path: "/Home",
