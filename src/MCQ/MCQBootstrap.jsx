@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeStore } from "../utility/ThemeContext";
+import { motion } from 'framer-motion';
 import '../mcq.css';
 
 const questions = [
@@ -105,6 +107,7 @@ const questions = [
 ];
 
 const MCQBootstrap = () => {
+  const { theme, toggleTheme } = useContext(ThemeStore);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [results, setResults] = useState({});
   const [showSummary, setShowSummary] = useState(false);
@@ -135,7 +138,14 @@ const MCQBootstrap = () => {
   localStorage.setItem("bootP", percentage);
 
   return (
-    <div className="mcq-container">
+    <div className={`mcq-container ${theme === 'dark' ? 'dark-theme' : ''}`}>
+    <motion.button
+      className={`fixed top-4 right-4 p-2 rounded-full ${theme === 'light' ? 'bg-gray-200' : 'bg-gray-700'}`}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      onClick={toggleTheme}
+    >
+    </motion.button>
       <h1>Bootstrap Quiz</h1>
       {!showSummary ? (
         questions.map((question, index) => (

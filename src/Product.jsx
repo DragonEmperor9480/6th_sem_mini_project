@@ -1,82 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion';
 import Products from "./data.js";
-import { useNavigate } from "react-router-dom";
+import { ThemeStore } from "./utility/ThemeContext";
 
 const Product = () => {
     let { id } = useParams();
     const [product, setProduct] = useState(null);
-    let Navigate = useNavigate();
-    let a,b;
-    const goToCourse = () => {
-        if (id==2)
-            Navigate("/CourseGamedev");
-        else if (id==3)
-            Navigate("/Coursevim");
-        else if (id==4)
-            Navigate("/Coursegenai");
-        else if (id==5)
-            Navigate("/Coursenode1");
-        else if (id==6)
-            Navigate("/Coursereact");
-        else if (id==7)
-            Navigate("/Courseboothin");
-        else
-        Navigate("/CourseMain");
-        a=1;
-        localStorage.setItem("a",a);
-    };
-
-    const goToArticle = () => {
-        if(id==1)
-        window.location.href = "https://www.learnpython.org/";
-        else if(id==2)
-            window.location.href = "https://www.freecodecamp.org/news/javascript-gamedev-with-kaboomjs/";
-            else if(id==3)
-            window.location.href = "https://www.freecodecamp.org/news/vim-beginners-guide/";
-            else if(id==4)
-            window.location.href = "https://steaminai.org/?gad_source=1&gclid=CjwKCAjwp4m0BhBAEiwAsdc4aHFupF0gjHlSQS3hCGsvbPPcS8XY3qg9DkxQtbibzhjelyMj95CWARoCD4QQAvD_BwE";
-            else if(id==5)
-            window.location.href = "https://www.bing.com/ck/a?!&&p=2e2439c163259832JmltdHM9MTcxOTc5MjAwMCZpZ3VpZD0xM2VmMWE5Yy03ZGMxLTZmNTktMGQ4Ni0wZTBkN2M3MzZlYzcmaW5zaWQ9NTUyNw&ptn=3&ver=2&hsh=3&fclid=13ef1a9c-7dc1-6f59-0d86-0e0d7c736ec7&psq=nodejs+article&u=a1aHR0cHM6Ly93d3cuZ2Vla3Nmb3JnZWVrcy5vcmcvbm9kZWpzLw&ntb=1";
-            else if(id==6)
-            window.location.href = "https://www.bing.com/ck/a?!&&p=7f28686b93488c39JmltdHM9MTcxOTc5MjAwMCZpZ3VpZD0xM2VmMWE5Yy03ZGMxLTZmNTktMGQ4Ni0wZTBkN2M3MzZlYzcmaW5zaWQ9NTQ4NA&ptn=3&ver=2&hsh=3&fclid=13ef1a9c-7dc1-6f59-0d86-0e0d7c736ec7&psq=react+article&u=a1aHR0cHM6Ly93d3cuZnJlZWNvZGVjYW1wLm9yZy9uZXdzL2FsbC10aGUtZnVuZGFtZW50YWwtcmVhY3QtanMtY29uY2VwdHMtamFtbWVkLWludG8tdGhpcy1zaW5nbGUtbWVkaXVtLWFydGljbGUtYzgzZjliNTNlYWMyLw&ntb=1";
-            else if(id==7)
-            window.location.href = "https://www.edureka.co/learning-center";
-            else if(id==8)
-            window.location.href = "https://careerfoundry.com/en/tutorials/web-development-for-beginners/introduction-to-web-development";
-            else if(id==9)
-            window.location.href = "https://aws.amazon.com/what-is/sql/#:~:text=Structured%20query%20language%20(SQL)%20is%20a%20standard%20language%20for%20database,undergoes%20continual%20upgrades%20and%20improvements.";
-            else if(id==10)
-            window.location.href = "https://www.w3schools.com/java/java_intro.asp";
-
-        b=1;
-        localStorage.setItem("b",b);
-    };
-
-    const goToQuiz = () => {
-        if(localStorage.getItem("a")==1 && localStorage.getItem("b")==1)
-        {   
-            if (id==2)
-            Navigate("/MCQGamedev");
-            else if (id==3)
-            Navigate("/MCQvim");
-            else if (id==4)
-            Navigate("/MCQgenai");
-            else if (id==5)
-            Navigate("/MCQnode1");
-            else if (id==6)
-                Navigate("/MCQreact");
-
-            else if (id==7)
-                Navigate("/MCQBootstrap");
-            else
-            Navigate("/MCQ");
-        }
-        else
-        {
-            alert("Please complete videos and article first");
-        }
-    }
+    const navigate = useNavigate();
+    const { theme, toggleTheme } = useContext(ThemeStore);
+    
     useEffect(() => {
         const foundProduct = Products.find(product => product.id === parseInt(id));
         setProduct(foundProduct);
@@ -85,44 +18,108 @@ const Product = () => {
     if (!product) return <></>;
 
     const { title, description, views, likes, category, rating, thumbnail } = product;
- 
-    return (
-        <div>
-        <div className="h-[92vh] w-screen bg-base-300 pt-10">
-            <div className="card card-side bg-base-100 shadow-xl w-1/2 mx-auto">
-                <figure><img src={thumbnail} alt={title} /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">{title}</h2>
-                    <p>{description}</p>
-                    <div className="card-actions justify-around">
-                        <button className="btn">
-                            Likes
-                            <div className="badge badge-secondary">{likes}</div>
-                        </button>
-                        <button className="btn">
-                            Category
-                            <div className="badge badge-secondary">{category}</div>
-                        </button>
-                        <button className="btn">
-                            Rating
-                            <div className="badge badge-secondary">{rating}</div>
-                        </button>
-                        <button className="btn">
-                            Views
-                            <div className="badge badge-secondary">{views}</div>
-                        </button>
-                    </div>
-                    <div className="card-actions justify-center mt-5">
-                        <button className="btn btn-primary mx-7" onClick={goToCourse}> Video</button>
-                        <button className="btn btn-primary mx-7" onClick={goToArticle}> Article</button>
-                        <button className="btn btn-primary mx-7" onClick={goToQuiz}> Quiz!</button>
 
+    const goToCourse = () => {
+        const courseRoutes = {
+            2: "/CourseGamedev",
+            3: "/Coursevim",
+            4: "/Coursegenai",
+            5: "/Coursenode1",
+            6: "/Coursereact",
+            7: "/Courseboothin"
+        };
+        navigate(courseRoutes[id] || "/CourseMain");
+        localStorage.setItem("a", 1);
+    };
+
+    const goToArticle = () => {
+        const articleUrls = {
+            1: "https://www.learnpython.org/",
+            2: "https://www.freecodecamp.org/news/javascript-gamedev-with-kaboomjs/",
+            3: "https://www.freecodecamp.org/news/vim-beginners-guide/",
+            4: "https://steaminai.org/?gad_source=1&gclid=CjwKCAjwp4m0BhBAEiwAsdc4aHFupF0gjHlSQS3hCGsvbPPcS8XY3qg9DkxQtbibzhjelyMj95CWARoCD4QQAvD_BwE",
+            5: "https://www.geeksforgeeks.org/nodejs/",
+            6: "https://www.freecodecamp.org/news/all-the-fundamental-react-js-concepts-jammed-into-this-single-medium-article-c83f9b53eac2/",
+            7: "https://www.edureka.co/learning-center",
+            8: "https://careerfoundry.com/en/tutorials/web-development-for-beginners/introduction-to-web-development",
+            9: "https://aws.amazon.com/what-is/sql/",
+            10: "https://www.w3schools.com/java/java_intro.asp"
+        };
+        window.location.href = articleUrls[id] || "/";
+        localStorage.setItem("b", 1);
+    };
+
+    const goToQuiz = () => {
+        if (localStorage.getItem("a") == 1 && localStorage.getItem("b") == 1) {
+            const quizRoutes = {
+                2: "/MCQGamedev",
+                3: "/MCQvim",
+                4: "/MCQgenai",
+                5: "/MCQnode1",
+                6: "/MCQreact",
+                7: "/MCQBootstrap"
+            };
+            navigate(quizRoutes[id] || "/MCQ");
+        } else {
+            alert("Please complete videos and article first");
+        }
+    };
+
+    return (
+        <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className={`min-h-screen w-full ${theme === 'light' ? 'bg-gray-100' : 'bg-gray-900 text-white'} transition-colors duration-300 pt-10`}
+        >
+            <div className="container mx-auto px-4">
+                <motion.div 
+                    className={`card bg-base-100 shadow-xl overflow-hidden ${theme === 'light' ? 'bg-white' : 'bg-gray-800'}`}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
+                    <div className="flex flex-col md:flex-row">
+                        <figure className="md:w-1/3">
+                            <img src={thumbnail} alt={title} className="w-full h-full object-cover" />
+                        </figure>
+                        <div className="card-body md:w-2/3">
+                            <h2 className="card-title text-2xl mb-4">{title}</h2>
+                            <p className="mb-6">{description}</p>
+                            <div className="flex flex-wrap justify-around mb-6">
+                                {[
+                                    { label: "Likes", value: likes },
+                                    { label: "Category", value: category },
+                                    { label: "Rating", value: rating },
+                                    { label: "Views", value: views }
+                                ].map((item, index) => (
+                                    <motion.div 
+                                        key={index}
+                                        className={`badge ${theme === 'light' ? 'bg-blue-100 text-blue-800' : 'bg-blue-900 text-blue-100'} p-3 m-1`}
+                                        whileHover={{ scale: 1.1 }}
+                                    >
+                                        {item.label}: {item.value}
+                                    </motion.div>
+                                ))}
+                            </div>
+                            <div className="card-actions justify-center mt-5">
+                                {["Video", "Article", "Quiz!"].map((action, index) => (
+                                    <motion.button
+                                        key={index}
+                                        className={`btn ${theme === 'light' ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-blue-700 hover:bg-blue-800 text-white'}`}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={[goToCourse, goToArticle, goToQuiz][index]}
+                                    >
+                                        {action}
+                                    </motion.button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
-        </div>
-        
-        </div>
+
+        </motion.div>
     );
 };
 

@@ -17,8 +17,8 @@ let handlecall = (event)=>{
 
 
 }
-let darkTheme="card w-96 h-96 bg-base-300 shadow-xl m-4"
-let lightTheme="card w-96 h-96 bg-gray-200 shadow-xl m-4"  
+let darkTheme="card w-86 h-86 bg-base-300 shadow-xl m-4"
+let lightTheme="card w-86 h-86 bg-sky-200 shadow-xl m-4"
 return(  <div className={theme=='light'?lightTheme:darkTheme} 
 onClick={handleclick}
 >
@@ -35,4 +35,4 @@ onClick={handleclick}
 </div>);
 }
 
-export default ProductCard
+export default ProductCard;

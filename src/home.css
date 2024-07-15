@@ -1,0 +1,29 @@
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(25%, 25%) rotate(90deg); }
+    50% { transform: translate(50%, 0%) rotate(180deg); }
+    75% { transform: translate(25%, -25%) rotate(270deg); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-25%, 25%) scale(1.5); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(25%, -15%) rotate(120deg); }
+    66% { transform: translate(-15%, 25%) rotate(240deg); }
+}
+
+.animate-float1 {
+    animation: float1 60s infinite linear;
+}
+
+.animate-float2 {
+    animation: float2 45s infinite ease-in-out;
+}
+
+.animate-float3 {
+    animation: float3 50s infinite ease-in-out;
+}

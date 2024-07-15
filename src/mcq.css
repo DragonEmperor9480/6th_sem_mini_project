@@ -1,123 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary-color: #8B5CF6;
+  --primary-hover: #7C3AED;
+  --correct-color: #10B981;
+  --incorrect-color: #EF4444;
+  --bg-color: #F3F4F6;
+  --text-color: #1F2937;
+}
+
+.dark-theme {
+  --bg-color: #1F2937;
+  --text-color: #F3F4F6;
+}
+
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
 
-  
-  .mcq-container h1 {
-    font-size: 2.0rem; /* Increase font size */
-    font-weight: bold; /* Make it bold */
-    margin-bottom: 20px; /* Add some space below the title */
-    color: white;
-}  
+#root {
+  height: 100%;
+}
 
-  .mcq-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: #35393f;
-    color: black;
-    font-weight: bold;
+.mcq-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.question-block {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+  width: 100%;
+  max-width: 800px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.option-button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-button:hover:not([disabled]) {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.option-button.correct {
+  background-color: var(--correct-color);
+  color: white;
+  border-color: var(--correct-color);
+}
+
+.option-button.incorrect {
+  background-color: var(--incorrect-color);
+  color: white;
+  border-color: var(--incorrect-color);
+}
+
+.result {
+  margin-top: 1rem;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.correct-message {
+  color: var(--correct-color);
+}
+
+.incorrect-message {
+  color: var(--incorrect-color);
+}
+
+.summary {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-out;
+  width: 100%;
+  max-width: 800px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid var(--primary-color);
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  h1 {
-    margin-bottom: 30px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .question-block {
-    margin-bottom: 20px;
-    width: 80%;
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
+}
+
+@media (max-width: 600px) {
   .options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
-  
-  .option-button {
-    width: 100%;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .option-button.correct {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
-  }
-  
-  .option-button.incorrect {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-  }
-  
-  .option-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-  
-  .result {
-    margin-top: 10px;
-  }
-  
-  .correct-message {
-    color: #155724;
-  }
-  
-  .incorrect-message {
-    color: #721c24;
-  }
-  
-  .summary {
-    margin-top: 30px;
-    width: 80%;
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    color: black;
-  }
-  
-  table, th, td {
-    border: 1px solid #eb5454;
-
 }
-  
-  th, td {
-    padding: 10px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #c3b5b5;
-  }
-
-.summary{
-    color: black;
-    text-align: center;
-    font-weight: bold;
-}
-  
