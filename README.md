@@ -30,3 +30,5 @@ npm run dev
 ***Reference APi for making our custom data***
 <br>
 https://dummyjson.com/products
+
+NOTE: Node JS is mandatory and it should be installed for npm packages to work
